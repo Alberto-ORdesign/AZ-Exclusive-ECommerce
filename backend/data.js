@@ -1,6 +1,7 @@
 const data = {
   products: [
     {
+      _id: '1',
       nombre: 'Elden Ring',
       slug: 'elden-ring',
       categoria: 'PC',
@@ -13,6 +14,7 @@ const data = {
       descripcion: 'Elden Ring para PC es un RPG de acción (ARPG).',
     },
     {
+      _id: '2',
       nombre: 'WWE 2K22 Deluxe Edition',
       slug: 'wwe-2k22-deluxe-edition',
       categoria: 'PC',
@@ -25,6 +27,7 @@ const data = {
       descripcion: 'UN JUEGO QUE QUIZÁS PEGUE DEMASIADO FUERTE',
     },
     {
+      _id: '3',
       nombre: 'God Of War',
       slug: 'god-of-war',
       categoria: 'PC',

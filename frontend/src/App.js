@@ -1,39 +1,56 @@
-import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
+import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 import HomeScreen from './screens/HomeScreen';
 import ProductScreen from './screens/ProductScreen';
-import NavBar from 'react-bootstrap/Navbar';
+import Navbar from 'react-bootstrap/Navbar';
+import Badge from 'react-bootstrap/Badge';
+import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
 import { LinkContainer } from 'react-router-bootstrap';
+import { useContext } from 'react';
+import { Store } from './Store';
+import CestaScreen from './screens/CestaScreen';
+import SigninScreen from './screens/SigninScreen';
 
 function App() {
+  const { state } = useContext(Store);
+  const { cart } = state;
   return (
     <BrowserRouter>
       <div className="d-flex flex-column site-container">
         <header>
-          <NavBar bg="dark" variant="dark">
+          <Navbar bg="dark" variant="dark">
             <Container>
               <LinkContainer to="/">
-                <NavBar.Brand>AZ Exclusive</NavBar.Brand>
+                <Navbar.Brand>AZ Exclusive</Navbar.Brand>
               </LinkContainer>
+              <Nav className="me-auto">
+                <Link to="/cart" className="nav-link">
+                  Cesta
+                  {cart.cartItems.length > 0 && (
+                    <Badge pill bg="danger">
+                      {cart.cartItems.reduce((a, c) => a + c.cantidad, 0)}
+                    </Badge>
+                  )}
+                </Link>
+              </Nav>
             </Container>
-          </NavBar>
+          </Navbar>
         </header>
         <main>
           <Container className="mt-3">
             <Routes>
               <Route path="/product/:slug" element={<ProductScreen />} />
               <Route path="/" element={<HomeScreen />} />
+              <Route path="/cart" element={<CestaScreen />} />
+              <Route path="/signin" element={<SigninScreen />} />
             </Routes>
           </Container>
         </main>
         <footer>
-          <div className="text-center">
-            Todos los derechos están reservados.
-          </div>
+          <div className="text-center">Todos los derechos reservados.</div>
         </footer>
       </div>
     </BrowserRouter>
   );
 }
-
 export default App;
