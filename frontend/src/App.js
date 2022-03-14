@@ -67,7 +67,7 @@ function App() {
                         to="#signout"
                         onClick={signoutHandler}
                       >
-                        Sign Out
+                        Cerrar Sesión
                       </Link>
                     </NavDropdown>
                   ) : (
